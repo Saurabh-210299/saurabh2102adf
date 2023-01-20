@@ -1,0 +1,28 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          glossary as (title as string, GlossDiv as (title as string, GlossList as (GlossEntry as (ID as string, SortAs as string, GlossTerm as string, Acronym as string, Abbrev as string, GlossDef as (para as string, GlossSeeAlso as string[]), GlossSee as string))))",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> source1"
+			]
+		}
+	}
+}
